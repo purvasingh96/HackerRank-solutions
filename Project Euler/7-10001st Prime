@@ -1,0 +1,52 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+ 
+
+ 
+// Driver Program to test above function
+int main()
+{
+    long long n = 1000000; 
+    int t;
+    cin>>t;
+    bool prime[n+1];
+    memset(prime, true, sizeof(prime));
+ 
+    for (long long p=2; p*p<=n; p++)
+    {
+        // If prime[p] is not changed, then it is a prime
+        if (prime[p] == true)
+        {
+            // Update all multiples of p
+            for (long i=p*2; i<=n; i += p)
+                prime[i] = false;
+        }
+    }
+    long long j=1LL;
+    long long arr[100000];
+ 
+    // Print all prime numbers
+    for (long long p=2; p<=n; p++)
+    {
+        if(prime[p] == true){
+            //cout<<p<<" ";
+            arr[j++]=p;
+        }
+    }
+    //int k;
+    //for(k=1;k<=j;k++)
+    //{
+      //  cout<<arr[k]<<" ";
+    //}
+    
+    while(t>0)
+    {
+    	long long q;
+	    cin>>q;
+	    cout<<arr[q]<<"\n";
+    	t--;
+	}
+    
+    return 0;
+}
