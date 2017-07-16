@@ -4,6 +4,8 @@ using namespace std;
 
 int mincost(long arr[], long n, long k){
 	//minheap
+	//greater means lower values are of high priority
+	//lower values come out of priority queue earlier.
 	priority_queue<long, vector<long>, greater<long> > pq(arr, arr+n);
 	
 	long res=0, c=0;
