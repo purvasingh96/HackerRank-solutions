@@ -6,6 +6,9 @@ int mincost(long arr[], long n, long k){
 	//minheap
 	//greater means lower values are of high priority
 	//lower values come out of priority queue earlier.
+	//priority_queue supports a constructor that requires two extra arguments to make it min heap.
+	//priority_queue <Type, vector<Type>, ComparisonType > min_heap;
+	//refer http://www.geeksforgeeks.org/implement-min-heap-using-stl/
 	priority_queue<long, vector<long>, greater<long> > pq(arr, arr+n);
 	
 	long res=0, c=0;
