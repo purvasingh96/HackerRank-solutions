@@ -1,94 +1,74 @@
-#include <stdio.h>      /* printf */
-#include <stdlib.h> 
-int calGcd(long a, long b)
-{
-if (b)
-        return calGcd(b, a % b);
-    else
-        return a;
+#include <bits/stdc++.h>
+
+using namespace std;
+bool mA[1000005] = {0};
+bool mB[1000005] = {0};
+int maximumGcdAndSum(vector <int> A, vector <int> B) {
+    // Complete this function
+    // Complete this function
+    sort(A.begin(),A.end());
+    sort(B.begin(),B.end());
+    
+    int gcd_sofar=1;
+    
+    for(int i=1; i<=1000005; i++){
+        
+        int i2 = i*i;
+        
+        for(int j=A.size()-1; A[j]>=i2; j--){
+            
+            int d = A[j]/i;
+            if( d<gcd_sofar ) break;
+            
+            if(i*d==A[j]){
+                mA[i]=1; mA[d]=1;
+            }
+        }
+        for(int j=B.size()-1; B[j]>=i2; j--){
+            
+            int d = B[j]/i;
+            if( d<gcd_sofar ) break;
+            
+            if(i*d==B[j]){
+                mB[i]=1; mB[d]=1;
+                if(mA[d] && d>gcd_sofar) gcd_sofar = d;
+            }
+        }        
+        
+    }
+    
+    int gcd = 1;
+    for(int i=1000005; i>=2; i--){
+        if(mA[i] && mB[i]) { gcd = i; break; }
+    }
+    
+    if(gcd==1){
+        return A[A.size()-1]+B[B.size()-1];
+    }
+    
+    int N,M;
+    for(int k=A.size()-1; k>=0; k--){
+        if(A[k]%gcd == 0) N = A[k];
+    }
+    for(int k=B.size()-1; k>=0; k--){
+        if(B[k]%gcd == 0) M = B[k];
+    }    
+    
+    return N+M;
 }
 
-int compare (const void * a, const void * b)
-{
-  return ( *(long*)b - *(long*)a );
-} 
-int main()
-{
-	long n, gcd, maxgcd=-1, i, j, sum=0, sumnew=0, anew, bnew, gcdprev=-1;
-	scanf("%ld", &n);
-	long a[n], b[n];
-	for(i=0;i<n;i++)
-	{
-		scanf("%ld", &a[i]);
-	}
-	
-	for(j=0;j<n;j++)
-	{
-		scanf("%ld", &b[j]);
-	}
-	int flag=0;
-	qsort(a, n, sizeof(long), compare);
-	qsort(b, n, sizeof(long), compare);
-	
-	long ai, bi, calculatedmaxgcd=-1, innercalgcdmax=-1;
-	for(i=0;i<n;i++)
-	{
-		//maxgcd=-1;
-		calculatedmaxgcd=-1;
-		//innercalgcdmax=-1;
-		for(j=0;j<n;j++)
-		{
-			gcd = calGcd(a[i], b[j]);
-			
-			if(gcd>calculatedmaxgcd)
-			{
-				if(gcd>maxgcd)
-				{
-					maxgcd=gcd;
-					ai=a[i];
-					bi=b[j];
-					sum = ai+bi;
-				}
-			
-				//printf("gcd for %d %d\n", a[i], b[j]);
-				//printf("gcd greater maxgcd\n");
-				//printf("gcd: %d\n", gcd);
-				//maxgcd=gcd;
-				calculatedmaxgcd=gcd;
-				innercalgcdmax=gcd;
-				
-				//printf("calculatedmaxgcd: %d, maxgcd: %d, sum: %d\n", calculatedmaxgcd, maxgcd, sum);
-			}
-			else if(gcd==maxgcd)
-			{
-				//printf("gcd for %d %d\n", a[i], b[j]);
-				//printf("gcd equal maxgcd\n");
-				//printf("gcd: %d\n", gcd);
-				sumnew = a[i]+b[i];
-				if(sumnew>sum)
-				{
-					sum=sumnew;
-				}
-				//printf("calculatedmaxgcd: %d, maxgcd: %d, sum: %d\n", calculatedmaxgcd, maxgcd, sum);
-			}
-			//else{
-				//printf("gcd for %d %d\n", a[i], b[j]);
-				//printf("gcd: %d\n", gcd);
-				//printf("gcd lesser maxgcd\n");
-				//printf("calculatedmaxgcd: %d, maxgcd: %d, sum: %d\n", calculatedmaxgcd, maxgcd, sum);
-			//}
-		}
-		//printf("calculatedmaxgcd: %d\n", calculatedmaxgcd);
-		if(calculatedmaxgcd<maxgcd)
-		{
-			//printf("break");
-			break;
-		}
-		else{
-			maxgcd=calculatedmaxgcd;
-		}
-		
-			gcdprev = maxgcd;
-	}
-	printf("%ld", sum);
- } 
+int main() {
+    int n;
+    cin >> n;
+    vector<int> A(n);
+    for(int A_i = 0; A_i < n; A_i++){
+       cin >> A[A_i];
+    }
+    vector<int> B(n);
+    for(int B_i = 0; B_i < n; B_i++){
+       cin >> B[B_i];
+    }
+    int res = maximumGcdAndSum(A, B);
+    cout << res << endl;
+    return 0;
+}
