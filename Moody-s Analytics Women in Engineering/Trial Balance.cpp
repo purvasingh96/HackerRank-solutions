@@ -144,5 +144,5 @@ int main()
 		}
 		
 	}
-	cout<<temp1-temp2<<" "<<count;
+	cout<<abs(temp1-temp2)<<" "<<count;
 }
