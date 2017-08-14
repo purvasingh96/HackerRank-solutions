@@ -1,0 +1,22 @@
+q. 2 men and 4 boys complete a piece of work in 8 days. 4 men and 2 boys complete in 6 days. how much time does a man and a boy working together require to complete the work?
+
+ans. (2m + 4b)8d = (4m + 2b)6d
+8md = 20bd
+1m = 2.5b
+
+total work to be done = (5b + 4b)8d = 72bd
+
+working: 1m + 1b = 3.5b
+
+72/3.5 = 144/7 days.
+
+q. a and b complete work in 9 and 18 days. a leaves 3 days before completion of work. how long will work last for?
+
+ans. last 3 days: b was working: (1/18)*3 = 1/6th
+
+before 3 days: 1-1/6 = 5/6 remaing work;
+
+in 1 day a+b can finish (1/9+1/18)=1/6th of work
+so 5/6 in 5 days.
+
+therefore 5+3 days = 8 days total.
